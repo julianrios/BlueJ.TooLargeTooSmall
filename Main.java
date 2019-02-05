@@ -5,18 +5,21 @@
  * @author (your name)
  * @version (a version number or a date)
  */
+
+import java.util.Scanner;
+
 public class Main
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private static Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor for objects of class Main
      */
     public Main()
     {
-        // initialise instance variables
-        x = 0;
+        letsPlay();
+
     }
 
     /**
@@ -25,9 +28,26 @@ public class Main
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static void letsPlay() {
+        // generate random numbers from 1-10
+        int randomNum = (int)(Math.random() * 10)+1;
+        int counter = 0;
+        boolean guess = false;
+        while(!guess) {
+            System.out.println("Guess a number from 1 to 10.");
+            int userGuess = scanner.nextInt();
+
+            if(userGuess > randomNum) {
+                System.out.println("Your guess: " + userGuess + " too large");
+                counter++;
+            } else if(userGuess < randomNum) {
+                System.out.println("Your guess: " + userGuess + " too small");
+                counter++;
+            } else {
+                System.out.println("Bingo your guess: " + userGuess + " is correct!");
+                guess = true;
+            }
+        }
+        System.out.println("You made " + counter + " incorrect guesses.");
     }
 }
